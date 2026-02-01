@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      width: 280px;
+      padding: 16px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+    }
+    h1 {
+      font-size: 16px;
+      margin: 0 0 12px 0;
+      color: #1a1a1a;
+    }
+    p {
+      font-size: 13px;
+      color: #666;
+      margin: 0 0 16px 0;
+      line-height: 1.4;
+    }
+    button {
+      width: 100%;
+      padding: 10px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      color: white;
+      background: #D97706;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: #B45309;
+    }
+    button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+    .shortcut {
+      font-size: 11px;
+      color: #999;
+      margin-top: 12px;
+      text-align: center;
+    }
+    .shortcut kbd {
+      background: #f0f0f0;
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+      font-family: monospace;
+    }
+    .error {
+      color: #dc2626;
+      font-size: 12px;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Claude Summarizer</h1>
+  <p>現在のページをClaudeに送信して要約を取得します。</p>
+  <button id="summarize">Claudeで要約</button>
+  <div class="shortcut">
+    ショートカット: <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd>
+  </div>
+  <div id="error" class="error"></div>
+  <script src="popup.js"></script>
+</body>
+</html>

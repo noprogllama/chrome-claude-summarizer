@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude Summarizer 設定</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    h1 {
+      color: #333;
+      border-bottom: 2px solid #d97706;
+      padding-bottom: 10px;
+    }
+    .section {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .section h2 {
+      margin-top: 0;
+      color: #555;
+      font-size: 1.2em;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #333;
+    }
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+      background-color: white;
+    }
+    textarea {
+      width: 100%;
+      height: 300px;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+      font-family: monospace;
+      resize: vertical;
+      line-height: 1.5;
+    }
+    .help-text {
+      font-size: 12px;
+      color: #666;
+      margin-top: 8px;
+    }
+    .variables {
+      background: #f9f9f9;
+      padding: 10px;
+      border-radius: 4px;
+      margin-top: 10px;
+    }
+    .variables code {
+      background: #e0e0e0;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 13px;
+    }
+    .button-container {
+      display: flex;
+      gap: 10px;
+    }
+    button {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    button.primary {
+      background-color: #d97706;
+      color: white;
+    }
+    button.primary:hover {
+      background-color: #b45309;
+    }
+    button.secondary {
+      background-color: #e5e5e5;
+      color: #333;
+    }
+    button.secondary:hover {
+      background-color: #d5d5d5;
+    }
+    .status {
+      margin-top: 15px;
+      padding: 10px;
+      border-radius: 4px;
+      display: none;
+    }
+    .status.success {
+      display: block;
+      background-color: #d1fae5;
+      color: #065f46;
+    }
+    .status.error {
+      display: block;
+      background-color: #fee2e2;
+      color: #991b1b;
+    }
+  </style>
+</head>
+<body>
+  <h1>Claude Summarizer 設定</h1>
+
+  <div class="section">
+    <h2>モデル選択</h2>
+    <label for="model">使用するモデル</label>
+    <select id="model">
+      <option value="claude-sonnet-4-5-20250929">Claude Sonnet 4.5（推奨・高速）</option>
+      <option value="claude-opus-4-5-20251101">Claude Opus 4.5（高性能）</option>
+    </select>
+    <p class="help-text">Sonnet 4.5は高速でバランスが良く、Opus 4.5はより高度な推論が可能です。</p>
+  </div>
+
+  <div class="section">
+    <h2>プロンプト設定</h2>
+    <label for="prompt">要約時に使用するプロンプト</label>
+    <textarea id="prompt"></textarea>
+    <div class="variables">
+      <strong>使用可能な変数:</strong><br>
+      <code>{pageTitle}</code> - ページのタイトル<br>
+      <code>{url}</code> - ページのURL
+    </div>
+    <p class="help-text">プロンプト内で上記の変数を使用すると、実行時に実際の値に置換されます。</p>
+  </div>
+
+  <div class="button-container">
+    <button class="primary" id="save">設定を保存</button>
+    <button class="secondary" id="reset">デフォルトに戻す</button>
+  </div>
+
+  <div class="status" id="status"></div>
+
+  <script src="options.js"></script>
+</body>
+</html>
